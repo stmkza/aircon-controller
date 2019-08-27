@@ -93,7 +93,7 @@ export class AirconController {
     }
 
     async setOperationState(state: ElType.OperationState): Promise<void> {
-        const result = await this.sendFrame(
+        await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
             new ElType.ElObject(0x01, 0x30, 0x01),
             ElType.ElService.SetC,
