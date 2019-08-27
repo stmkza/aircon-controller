@@ -1,19 +1,11 @@
 import {AirconController} from './AirconController';
+import { OperationState } from './ElType';
 
-const controller = new AirconController(process.env.AIRCON_IP || '', 3610);
+const controller = new AirconController((process.env.AIRCON_IP || ''), 3610);
 
 async function main() {
     await controller.initialize();
-    const result = await controller.getOperationState();
-    [
-        "protocolType".padEnd(24, ' ') + ['ECHONET_LITE'][result.protocolType],
-        "frameFormat".padEnd(24, ' ') + ['SPECIFIED_MESSAGE_FORMAT', 'ARBITRARY_MESSAGE_FORMAT'][result.frameFormat],
-        "transactionId".padEnd(24, ' ') + result.transactionId,
-        "sourceElObject".padEnd(24, ' ') + result.sourceElObject,
-        "destinationElObject".padEnd(24, ' ') + result.destinationElObject,
-        "service".padEnd(24, ' ') + result.service.toString(16).padStart(2, '0'),
-        "properties".padEnd(24, ' ') + result.properties
-    ].forEach(v => console.log(v));
+    console.log((await controller.getOperationState() === OperationState.ON)?'ON':'OFF');
     await controller.finalize();
 }
 

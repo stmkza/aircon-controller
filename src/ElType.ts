@@ -176,6 +176,14 @@ export class ElProperty {
         return data;
     }
 
+    get propertyCode(): number {
+        return this._propertyCode[0];
+    }
+
+    get propertyData(): ElData {
+        return this._propertyData;
+    }
+
     toString(): string {
         return `${this._propertyCode[0].toString(16).padStart(2, '0')} = ${Buffer.from(this._propertyData).toString('hex')}`;
     }
@@ -254,3 +262,8 @@ export class ElArbitraryMessageFrameData implements ElFrameData {
 export type ElData = Uint8Array;
 
 export type ElFrame = Uint8Array;
+
+export enum OperationState {
+    ON,
+    OFF
+}
