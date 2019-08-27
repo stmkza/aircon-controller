@@ -1,6 +1,6 @@
 import {AirconController} from './AirconController';
 
-const controller = new AirconController(process.env.AIRCON_IP, 3610);
+const controller = new AirconController(process.env.AIRCON_IP || '', 3610);
 
 async function main() {
     await controller.initialize();
