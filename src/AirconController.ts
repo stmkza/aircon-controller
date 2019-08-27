@@ -84,8 +84,8 @@ export class AirconController {
             ]
         );
         switch (result.properties[0].propertyData[0]) {
-            case 0x30:
-            case 0x31:
+            case ElType.OperationState.ON:
+            case ElType.OperationState.OFF:
                 return result.properties[0].propertyData[0];
             default:
                 throw new RangeError('Unsupported Operation State');
@@ -114,8 +114,8 @@ export class AirconController {
             ]
         );
         switch (result.properties[0].propertyData[0]) {
-            case 0x41:
-            case 0x42:
+            case ElType.PowerSavingOperationSetting.ON:
+            case ElType.PowerSavingOperationSetting.OFF:
                 return result.properties[0].propertyData[0];
             default:
                 throw new RangeError('Unsupported Power Saving Operation Setting');
