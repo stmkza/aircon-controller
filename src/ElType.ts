@@ -267,3 +267,8 @@ export enum OperationState {
     ON = 0x30,
     OFF = 0x31
 }
+
+export enum PowerSavingOperationSetting {
+    ON = 0x41,
+    OFF = 0x42
+}

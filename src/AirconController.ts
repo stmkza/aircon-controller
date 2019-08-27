@@ -103,4 +103,22 @@ export class AirconController {
         );
         return;
     }
+
+    async getPowerSavingOperationSetting(): Promise<ElType.PowerSavingOperationSetting> {
+        const result = await this.sendFrame(
+            new ElType.ElObject(0x05, 0xFF, 0x01),
+            new ElType.ElObject(0x01, 0x30, 0x01),
+            ElType.ElService.Get,
+            [
+                new ElType.ElProperty(0x8F),
+            ]
+        );
+        switch (result.properties[0].propertyData[0]) {
+            case 0x41:
+            case 0x42:
+                return result.properties[0].propertyData[0];
+            default:
+                throw new RangeError('Unsupported Power Saving Operation Setting');
+        }
+    }
 }
