@@ -1,11 +1,11 @@
 import { AirconController } from './AirconController';
-import { OperationState, PowerSavingOperationSetting } from './ElType';
+import { OperationState as OperationStatus, PowerSavingOperationSetting } from './ElType';
 
 const controller = new AirconController((process.env.AIRCON_IP || ''), 3610);
 
 async function main() {
     await controller.initialize();
-    await displayOnOffInformation(controller.getOperationState.bind(controller), 'Operation status', OperationState.ON, OperationState.OFF);
+    await displayOnOffInformation(controller.getOperationStatus.bind(controller), 'Operation status', OperationStatus.ON, OperationStatus.OFF);
     await displayOnOffInformation(controller.getPowerSavingOperationSetting.bind(controller), 'Power-saving operation status', PowerSavingOperationSetting.ON, PowerSavingOperationSetting.OFF);
     await controller.finalize();
 }

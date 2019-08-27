@@ -74,7 +74,7 @@ export class AirconController {
         });
     }
 
-    async getOperationState(): Promise<ElType.OperationState> {
+    async getOperationStatus(): Promise<ElType.OperationStatus> {
         const result = await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
             new ElType.ElObject(0x01, 0x30, 0x01),
@@ -84,15 +84,15 @@ export class AirconController {
             ]
         );
         switch (result.properties[0].propertyData[0]) {
-            case ElType.OperationState.ON:
-            case ElType.OperationState.OFF:
+            case ElType.OperationStatus.ON:
+            case ElType.OperationStatus.OFF:
                 return result.properties[0].propertyData[0];
             default:
                 throw new RangeError('Unsupported Operation State');
         }
     }
 
-    async setOperationState(state: ElType.OperationState): Promise<void> {
+    async setOperationStatus(state: ElType.OperationStatus): Promise<void> {
         await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
             new ElType.ElObject(0x01, 0x30, 0x01),
