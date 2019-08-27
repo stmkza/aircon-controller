@@ -4,7 +4,7 @@ const controller = new AirconController(process.env.AIRCON_IP || '', 3610);
 
 async function main() {
     await controller.initialize();
-    const result = await controller.getPowerState();
+    const result = await controller.getOperationState();
     [
         "protocolType".padEnd(24, ' ') + ['ECHONET_LITE'][result.protocolType],
         "frameFormat".padEnd(24, ' ') + ['SPECIFIED_MESSAGE_FORMAT', 'ARBITRARY_MESSAGE_FORMAT'][result.frameFormat],
