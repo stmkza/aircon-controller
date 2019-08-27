@@ -85,11 +85,22 @@ export class AirconController {
         );
         switch (result.properties[0].propertyData[0]) {
             case 0x30:
-                return ElType.OperationState.ON;
             case 0x31:
-                return ElType.OperationState.OFF;
+                return result.properties[0].propertyData[0];
             default:
                 throw new RangeError('Unsupported Operation State');
         }
+    }
+
+    async setOperationState(state: ElType.OperationState): Promise<void> {
+        const result = await this.sendFrame(
+            new ElType.ElObject(0x05, 0xFF, 0x01),
+            new ElType.ElObject(0x01, 0x30, 0x01),
+            ElType.ElService.SetC,
+            [
+                new ElType.ElProperty(0x80, new Uint8Array([state])),
+            ]
+        );
+        return;
     }
 }

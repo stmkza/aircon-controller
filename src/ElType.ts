@@ -264,6 +264,6 @@ export type ElData = Uint8Array;
 export type ElFrame = Uint8Array;
 
 export enum OperationState {
-    ON,
-    OFF
+    ON = 0x30,
+    OFF = 0x31
 }
