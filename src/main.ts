@@ -1,5 +1,5 @@
 import { AirconController } from './AirconController';
-import { OperationState as OperationStatus, PowerSavingOperationSetting } from './ElType';
+import { OperationStatus as OperationStatus, PowerSavingOperationSetting } from './ElType';
 
 const controller = new AirconController((process.env.AIRCON_IP || ''), 3610);
 
