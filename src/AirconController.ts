@@ -103,6 +103,9 @@ export class AirconController {
         });
     }
 
+    /**
+     * 動作状態を取得
+     */
     async getOperationStatus(): Promise<ElType.OperationStatus> {
         const result = await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -121,6 +124,10 @@ export class AirconController {
         }
     }
 
+    /**
+     * 動作状態を設定
+     * @param state 設定する動作状態
+     */
     async setOperationStatus(state: ElType.OperationStatus): Promise<void> {
         await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -133,6 +140,9 @@ export class AirconController {
         return;
     }
 
+    /**
+     * 節電動作設定を取得
+     */
     async getPowerSavingOperationSetting(): Promise<ElType.PowerSavingOperationSetting> {
         const result = await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -151,6 +161,10 @@ export class AirconController {
         }
     }
 
+    /**
+     * 節電動作設定を設定
+     * @param setting 設定する節電動作設定
+     */
     async setPowerSavingOperationSetting(setting: ElType.PowerSavingOperationSetting): Promise<void> {
         await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -163,6 +177,9 @@ export class AirconController {
         return;
     }
 
+    /**
+     * 運転モードを取得
+     */
     async getOperationModeSetting(): Promise<ElType.OperationModeSetting> {
         const result = await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -185,6 +202,10 @@ export class AirconController {
         }
     }
 
+    /**
+     * 運転モードを設定
+     * @param setting 設定する運転モード
+     */
     async setOperationModeSetting(setting: ElType.OperationModeSetting): Promise<void> {
         await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -197,6 +218,9 @@ export class AirconController {
         return;
     }
 
+    /**
+     * 温度自動設定を取得
+     */
     async getAutomaticTemperatureControlSetting(): Promise<ElType.AutomaticTemperatureControlSetting> {
         const result = await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
@@ -215,6 +239,10 @@ export class AirconController {
         }
     }
 
+    /**
+     * 温度自動設定を設定
+     * @param setting 設定する温度自動設定
+     */
     async setAutomaticTemperatureControlSetting(setting: ElType.AutomaticTemperatureControlSetting): Promise<void> {
         await this.sendFrame(
             new ElType.ElObject(0x05, 0xFF, 0x01),
