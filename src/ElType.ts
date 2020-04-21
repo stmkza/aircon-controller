@@ -304,3 +304,15 @@ export enum OperationModeSetting {
      */
     OTHER = 0x40
 }
+
+export enum AutomaticTemperatureControlSetting {
+    /**
+     * AUTO
+     */
+    AUTOMATIC = 0x41,
+
+    /**
+     * 非AUTO
+     */
+    NON_AUTOMATIC = 0x42
+}
