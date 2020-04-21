@@ -20,7 +20,36 @@ export class AirconController {
             try {
                 const smFrameData = new ElType.ElSpecifiedMessageFrameData(frame);
                 if (this.promises[smFrameData.transactionId.value]) {
-                    this.promises[smFrameData.transactionId.value][0](smFrameData);
+                    switch(smFrameData.service) {
+                        case ElType.ElService.SetI_SNA:
+                        case ElType.ElService.SetC_SNA:
+                        case ElType.ElService.Get_SNA:
+                        case ElType.ElService.INF_SNA:
+                        case ElType.ElService.SetGet_SNA:
+                            this.promises[smFrameData.transactionId.value][1](smFrameData);
+                            return;
+                        
+                        case ElType.ElService.SetI:
+                        case ElType.ElService.SetC:
+                        case ElType.ElService.Get:
+                        case ElType.ElService.INF_REQ:
+                        case ElType.ElService.SetGet:
+                            this.promises[smFrameData.transactionId.value][1]('要求用ESVコードが送信されました');
+                            return;
+
+                        case ElType.ElService.Set_Res:
+                        case ElType.ElService.Get_Res:
+                        case ElType.ElService.INF:
+                        case ElType.ElService.INFC:
+                        case ElType.ElService.INFC_Res:
+                        case ElType.ElService.SetGet_Res:
+                            this.promises[smFrameData.transactionId.value][0](smFrameData);
+                            return;
+
+                        default:
+                            this.promises[smFrameData.transactionId.value][1](smFrameData);
+                            return;
+                    }
                 } else {
                     return;
                 }

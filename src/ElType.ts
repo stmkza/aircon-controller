@@ -132,7 +132,7 @@ export enum ElService {
     SetI_SNA = 0x50,
     SetC_SNA = 0x51,
     Get_SNA = 0x52,
-    INF_REQ_SNA = 0x53,
+    INF_SNA = 0x53,
     SetGet_SNA = 0x5E,
 
     SetI = 0x60,
