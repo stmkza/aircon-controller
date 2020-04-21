@@ -133,4 +133,38 @@ export class AirconController {
         );
         return;
     }
+
+    async getOperationModeSetting(): Promise<ElType.OperationModeSetting> {
+        const result = await this.sendFrame(
+            new ElType.ElObject(0x05, 0xFF, 0x01),
+            new ElType.ElObject(0x01, 0x30, 0x01),
+            ElType.ElService.Get,
+            [
+                new ElType.ElProperty(0xB0),
+            ]
+        );
+        switch (result.properties[0].propertyData[0]) {
+            case ElType.OperationModeSetting.AUTOMATIC:
+            case ElType.OperationModeSetting.COOLING:
+            case ElType.OperationModeSetting.HEATING:
+            case ElType.OperationModeSetting.DEHUMIDIFICATION:
+            case ElType.OperationModeSetting.AIR_CIRCULATOR:
+            case ElType.OperationModeSetting.OTHER:
+                return result.properties[0].propertyData[0];
+            default:
+                throw new RangeError('Unsupported Operation Mode Setting');
+        }
+    }
+
+    async setOperationModeSetting(setting: ElType.OperationModeSetting): Promise<void> {
+        await this.sendFrame(
+            new ElType.ElObject(0x05, 0xFF, 0x01),
+            new ElType.ElObject(0x01, 0x30, 0x01),
+            ElType.ElService.SetC,
+            [
+                new ElType.ElProperty(0xB0, new Uint8Array([setting])),
+            ]
+        );
+        return;
+    }
 }

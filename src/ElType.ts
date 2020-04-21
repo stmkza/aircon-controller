@@ -272,3 +272,35 @@ export enum PowerSavingOperationSetting {
     ON = 0x41,
     OFF = 0x42
 }
+
+export enum OperationModeSetting {
+    /**
+     * 自動
+     */
+    AUTOMATIC = 0x41,
+
+    /**
+     * 冷房
+     */
+    COOLING = 0x42,
+
+    /**
+     * 暖房
+     */
+    HEATING = 0x43,
+
+    /**
+     * 除湿
+     */
+    DEHUMIDIFICATION = 0x44,
+
+    /**
+     * 送風
+     */
+    AIR_CIRCULATOR = 0x45,
+
+    /**
+     * その他
+     */
+    OTHER = 0x40
+}
